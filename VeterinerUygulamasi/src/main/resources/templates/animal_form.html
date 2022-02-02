@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+    <form th:action="@{/animals/save}" method="post" th:object="${animal}"
+    style="max-width:500px;margin: 0 auto;">
+    <input type="hidden" th:field="*{id}">
+        <div class="border border-secondary">
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">Açıklama:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{aciklama}"  class="form-control" required minlength="1" maxlength="100"/>
+                </div>
+            </div>
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">Cins:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{cins}" class="form-control" required minlength="1" maxlength="45" />
+                </div>
+            </div>
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">İsim:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{isim}" class="form-control" required minlength="1" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">Sahip Adı:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{sahipAd}"class="form-control" required minlength="1" maxlength="30" />
+                </div>
+            </div>
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">Tür:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{tur}" class="form-control" required minlength="1" maxlength="30"/>
+                </div>
+            </div>
+            <div class="form-group row rounded p-3">
+                <label class="col-sm-4 col-form-label">Yaş:</label>
+                <div class="col-sm-8">
+                    <input type="number" th:field="*{yas}"class="form-control" required minlength="1" maxlength="3" />
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2">Kaydet</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Vazgeç</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+function cancelForm(){
+window.location="[[@{/animals}]]";
+}
+</script>
+</body>
+</html>

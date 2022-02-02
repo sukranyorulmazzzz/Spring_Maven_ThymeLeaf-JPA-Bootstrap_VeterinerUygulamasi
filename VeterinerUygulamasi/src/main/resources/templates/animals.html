@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hayvanlar</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h1>Hayvanlar</h1></div>
+    <div class="m-2">
+    <a class="h3 " th:href="@{/animals/animal_form/}">Yeni Hayvan Ekle</a>
+    </div>
+    <div class="m-2">
+        <a class="h3 " th:href="@{/petowners/}">Yeni </a>
+    </div>
+    <div th:if="${message}" class="alert-success text-center">
+[[${message}]]
+    </div>
+        <div>
+       <table class="table table-bordered">
+           <thead class="thead-dark">
+           <tr>
+               <th>ID</th>
+               <th> Açıklama</th>
+               <th>Cins</th>
+               <th>İsim</th>
+               <th>Sahip Adı</th>
+               <th>Tür</th>
+               <th>Yaş</th>
+               <th></th>
+
+           </tr>
+           </thead>
+           <div class="m-2">
+               <a class="h3 " th:href="@{/animals/petowners/}">Sahip Bilgilerini Görüntüle</a>
+           </div>
+           <tbody>
+           <th:block th:each="animal:${listAnimals}">
+               <tr>
+                   <td>[[${animal.id}]]</td>
+                   <td>[[${animal.aciklama}]]</td>
+                   <td>[[${animal.cins}]]</td>
+                   <td>[[${animal.isim}]]</td>
+                   <td>[[${animal.sahipAd}]]</td>
+                   <td>[[${animal.tur}]]</td>
+                   <td>[[${animal.yas}]]</td>
+                   <td>
+                       <a class="h4 mr-3" th:href="@{'/animals/edit/'+${animal.id}}" >Düzenle</a>
+                       <a class="h4 mr-3" th:href="@{'/animals/delete/'+${animal.id}}">Sil</a></td>
+
+               </tr>
+           </th:block>
+           </tbody>
+       </table>
+    </div>
+</div>
+</body>
+</html>
